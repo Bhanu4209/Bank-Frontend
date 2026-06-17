@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ledger</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header>
+  <h1>Ledger</h1>
+  <span class="status" id="connStatus">checking backend…</span>
+</header>
+
+<main>
+
+  <!-- AUTH SECTION -->
+  <div class="panel" id="authPanel">
+    <h2 id="authTitle">Log in</h2>
+
+    <div id="loginForm">
+      <label>Email</label>
+      <input type="email" id="loginEmail" placeholder="you@example.com">
+      <label>Password</label>
+      <input type="password" id="loginPassword" placeholder="••••••••">
+      <button onclick="login()" id="loginBtn">Log in</button>
+      <div class="msg" id="loginMsg"></div>
+      <span class="toggle-link" onclick="showRegister()">Need an account? Register instead</span>
+    </div>
+
+    <div id="registerForm" class="hidden">
+      <label>Name</label>
+      <input type="text" id="regName" placeholder="Jane Doe">
+      <label>Email</label>
+      <input type="email" id="regEmail" placeholder="you@example.com">
+      <label>Password</label>
+      <input type="password" id="regPassword" placeholder="min. 6 characters">
+      <button onclick="register()" id="regBtn">Register</button>
+      <div class="msg" id="regMsg"></div>
+      <span class="toggle-link" onclick="showLogin()">Already have an account? Log in instead</span>
+    </div>
+  </div>
+
+  <!-- LOGGED IN VIEW -->
+  <div id="appPanel" class="hidden">
+
+    <div class="panel">
+      <h2>Signed in as</h2>
+      <div id="userInfo" class="empty-note"></div>
+      <button class="danger" onclick="logout()">Log out</button>
+      <div class="msg" id="logoutMsg"></div>
+    </div>
+
+    <div class="panel">
+      <h2>Your accounts</h2>
+      <div id="accountsList"><div class="empty-note">Loading…</div></div>
+      <button onclick="createAccount()">+ New account</button>
+      <button class="secondary" onclick="loadAccounts()">Refresh</button>
+      <div class="msg" id="accountMsg"></div>
+    </div>
+
+    <div class="panel">
+      <h2>Send money</h2>
+      <label>From account ID</label>
+      <input type="text" id="fromAccount" placeholder="paste account _id">
+      <label>To account ID</label>
+      <input type="text" id="toAccount" placeholder="paste recipient account _id">
+      <div class="row">
+        <div>
+          <label>Amount</label>
+          <input type="number" id="amount" placeholder="0.00" min="0" step="0.01">
+        </div>
+      </div>
+      <div class="field-hint">An idempotency key is generated automatically per submission, so accidental double-clicks won't double-charge.</div>
+      <button onclick="sendTransaction()" id="sendBtn">Send</button>
+      <div class="msg" id="txMsg"></div>
+    </div>
+
+  </div>
+
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
