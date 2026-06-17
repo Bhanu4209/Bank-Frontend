@@ -1,7 +1,7 @@
 const API_BASE =
   window.location.hostname === "localhost"
     ? "http://localhost:3000/api"
-    : "https://YOUR-RENDER-APP.onrender.com/api";
+    : "https://bank-backend-1-0pjo.onrender.com/api";
 
 let currentUser = null;
 
